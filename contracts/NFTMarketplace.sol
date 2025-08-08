@@ -101,5 +101,20 @@ function cancelListing(uint256 listingId) external {
     listing.active = false;
     emit ListingCancelled(listingId);
 }
+function setMarketplaceFee(uint256 newFee) external onlyOwner {
+    require(newFee <= 1000, "Fee too high"); 
+    marketplaceFeePercentage = newFee;
+}
 
+function setFeeRecipient(address newRecipient) external onlyOwner {
+    require(newRecipient != address(0), "Invalid address");
+    feeRecipient = newRecipient;
+}
+ function withdrawFees() external onlyOwner {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No fees to withdraw");
+        
+        (bool success, ) = payable(owner()).call{value: balance}("");
+        require(success, "Withdrawal failed");
+    }
 }
