@@ -41,5 +41,32 @@ contract NFTMarketplace is Ownable {
         _listingIdCounter = 1;
     }
 
-    
+    function listItem(
+    address nftContract,
+    uint256 tokenId,
+    uint256 price
+) external {
+    require(price > 0, "Price must be > 0");
+    require(
+        IERC721(nftContract).ownerOf(tokenId) == msg.sender,
+        "Not token owner"
+    );
+    require(
+        IERC721(nftContract).isApprovedForAll(msg.sender, address(this)) ||
+        IERC721(nftContract).getApproved(tokenId) == address(this),
+        "Marketplace not approved"
+    );
+
+    uint256 listingId = _listingIdCounter++;
+    listings[listingId] = Listing({
+        seller: msg.sender,
+        nftContract: nftContract,
+        tokenId: tokenId,
+        price: price,
+        active: true
+    });
+
+    emit ListingCreated(listingId, msg.sender, nftContract, tokenId, price);
+}
+
 }
