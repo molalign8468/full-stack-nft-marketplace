@@ -68,5 +68,38 @@ contract NFTMarketplace is Ownable {
 
     emit ListingCreated(listingId, msg.sender, nftContract, tokenId, price);
 }
+function buyItem(uint256 listingId) external payable {
+    Listing storage listing = listings[listingId];
+    require(listing.active, "Listing inactive");
+    require(msg.value == listing.price, "Incorrect ETH amount");
+
+    // Calculate fees
+    uint256 feeAmount = (msg.value * marketplaceFeePercentage) / 10000;
+    uint256 sellerProceeds = msg.value - feeAmount;
+
+    // Transfer NFT
+    IERC721(listing.nftContract).safeTransferFrom(
+        listing.seller,
+        msg.sender,
+        listing.tokenId
+    );
+
+    // Transfer funds
+    (bool feeSuccess, ) = feeRecipient.call{value: feeAmount}("");
+    (bool sellerSuccess, ) = listing.seller.call{value: sellerProceeds}("");
+    require(feeSuccess && sellerSuccess, "Transfer failed");
+
+    listing.active = false;
+
+    emit ItemSold(listingId, msg.sender, listing.seller, listing.price);
+}
+function cancelListing(uint256 listingId) external {
+    Listing storage listing = listings[listingId];
+    require(listing.active, "Listing inactive");
+    require(listing.seller == msg.sender, "Not seller");
+    
+    listing.active = false;
+    emit ListingCancelled(listingId);
+}
 
 }
