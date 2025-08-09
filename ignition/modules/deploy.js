@@ -5,5 +5,6 @@ const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
 module.exports = buildModule("MyNFTCollection", (m) => {
   const myNFTCollection = m.contract("MyNFTCollection");
-  return { myNFTCollection };
+  const nftMarketplace = m.contract("NFTMarketplace");
+  return { myNFTCollection, nftMarketplace };
 });
