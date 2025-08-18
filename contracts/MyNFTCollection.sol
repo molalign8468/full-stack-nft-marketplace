@@ -2,22 +2,24 @@
 pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyNFTCollection is ERC721, ERC721URIStorage, Ownable {
+contract MyNFTCollection is ERC721, Ownable {
     uint256 private _tokenIdCounter;
 
-    uint256 public constant MAX_SUPPLY = 100;
+    uint256 public constant MAX_SUPPLY = 65;
     uint256 public constant MINT_PRICE = 0.01 ether;
     uint256 public constant MAX_MINT_AMOUNT_PER_TX = 5;
     bool public saleIsActive = false;
 
     string private baseURI;
 
-
     constructor() ERC721("LoyaltyPoint", "LP") Ownable(msg.sender) {
-        _tokenIdCounter = 0; 
+        _tokenIdCounter = 0;
+    }
+
+    function flipSaleState() public onlyOwner {
+        saleIsActive = !saleIsActive;
     }
 
     function setBaseURI(string memory _baseURI) public onlyOwner {
@@ -27,18 +29,12 @@ contract MyNFTCollection is ERC721, ERC721URIStorage, Ownable {
     function _baseURI() internal view override returns (string memory) {
         return baseURI;
     }
-    
 
-    function flipSaleState() public onlyOwner {
-        saleIsActive = !saleIsActive;
-    }
-
-    function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to) public onlyOwner {
         require(_tokenIdCounter < MAX_SUPPLY, "Max supply reached");
         uint256 tokenId = _tokenIdCounter;
-        _tokenIdCounter++; 
+        _tokenIdCounter++;
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
     }
 
     function mintNFT(uint256 quantity) public payable {
@@ -49,7 +45,7 @@ contract MyNFTCollection is ERC721, ERC721URIStorage, Ownable {
 
         for (uint256 i = 0; i < quantity; i++) {
             uint256 tokenId = _tokenIdCounter;
-            _tokenIdCounter++; 
+            _tokenIdCounter++;
             _safeMint(msg.sender, tokenId);
         }
     }
@@ -62,23 +58,6 @@ contract MyNFTCollection is ERC721, ERC721URIStorage, Ownable {
         }
     }
 
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (string memory)
-    {
-        return super.tokenURI(tokenId);
-    }
-
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (bool)
-    {
-        return super.supportsInterface(interfaceId);
-    }
     function getTokenIdCounter() public view returns (uint256) {
         return _tokenIdCounter;
     }
