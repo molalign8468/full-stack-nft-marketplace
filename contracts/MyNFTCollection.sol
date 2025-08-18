@@ -1,23 +1,31 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.28;
 
-
-
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-
 contract MyNFTCollection is ERC721, ERC721URIStorage, Ownable {
     uint256 private _tokenIdCounter;
 
-    uint256 public constant MAX_SUPPLY = 1000;
+    uint256 public constant MAX_SUPPLY = 100;
     uint256 public constant MINT_PRICE = 0.01 ether;
     uint256 public constant MAX_MINT_AMOUNT_PER_TX = 5;
     bool public saleIsActive = false;
 
+    string private baseURI;
+
+
     constructor() ERC721("LoyaltyPoint", "LP") Ownable(msg.sender) {
         _tokenIdCounter = 0; 
+    }
+
+    function setBaseURI(string memory _baseURI) public onlyOwner {
+        baseURI = _baseURI;
+    }
+
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
     
 
@@ -70,5 +78,8 @@ contract MyNFTCollection is ERC721, ERC721URIStorage, Ownable {
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+    function getTokenIdCounter() public view returns (uint256) {
+        return _tokenIdCounter;
     }
 }
