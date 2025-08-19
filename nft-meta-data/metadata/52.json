@@ -1,0 +1,15 @@
+{
+    "name": "LoyaltyPoint #52",
+    "description": "A unique NFT from the LoyaltyPoint collection.",
+    "image": "ipfs://bafybeic7b56254f6m6tk3ovlg7u3atxkgrbc7dsvpz5af2jnqnihkxhe5e/52.jpg",
+    "attributes": [
+        {
+            "trait_type": "Collection",
+            "value": "LoyaltyPoint"
+        },
+        {
+            "trait_type": "Edition",
+            "value": 52
+        }
+    ]
+}
