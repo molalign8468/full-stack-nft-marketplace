@@ -28,8 +28,7 @@ Marketplace Preview:
 
 🔗 **Marketplace Deployed Contract (Sepolia):** [Etherscan Link](https://sepolia.etherscan.io/address/0xccDdD4aE659295fD4A86340985ed3dd56eD2fe8C)
 
-🔗 **NFTCollection Deployed Contract (Sepolia):** [Etherscan Link](https://sepolia.etherscan.io/address/ "0xD82088752d664D8Ce837D11Fd8FaD2c4e53dF061";
-)
+🔗 **NFTCollection Deployed Contract (Sepolia):** [Etherscan Link](https://sepolia.etherscan.io/address/ 0xD82088752d664D8Ce837D11Fd8FaD2c4e53dF061)
 
 📂 **Pinned Metadata on IPFS (Pinata):** [`/nft-meta-data`](./nft-meta-data)
 
