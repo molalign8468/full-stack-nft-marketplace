@@ -9,7 +9,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![IPFS](https://img.shields.io/badge/IPFS-65C0D7?style=for-the-badge&logo=ipfs&logoColor=white)
 
-A full-stack **Web3 decentralized application** that allows users to **mint, buy, and sell NFTs** securely on the Ethereum **Holesky Testnet**.  
+A full-stack **Web3 decentralized application** that allows users to **mint, buy, and sell NFTs** securely on the Ethereum **Sepolia Testnet**.  
 NFT metadata and assets are stored on **IPFS via Pinata**, ensuring decentralized and permanent availability.  
 This project demonstrates **end-to-end NFT lifecycle management** — from minting to trading — using **Solidity smart contracts, Hardhat, and React (Vite)**.
 
@@ -26,9 +26,10 @@ Minted NFT Preview:
 Marketplace Preview:  
 ![Marketplace](./screenshots/Marketplace.png)
 
-🔗 **Marketplace Deployed Contract (Holesky):** [Etherscan Link](https://holesky.etherscan.io/address/0x1da9C613Db3383785bCd5bf22df46b55219dA36D)
+🔗 **Marketplace Deployed Contract (Sepolia):** [Etherscan Link](https://sepolia.etherscan.io/address/0xccDdD4aE659295fD4A86340985ed3dd56eD2fe8C)
 
-🔗 **NFTCollection Deployed Contract (Holesky):** [Etherscan Link](https://holesky.etherscan.io/address/0x01B468456F3a17E024a0e02e5ac481953d487445)
+🔗 **NFTCollection Deployed Contract (Sepolia):** [Etherscan Link](https://sepolia.etherscan.io/address/ "0xD82088752d664D8Ce837D11Fd8FaD2c4e53dF061";
+)
 
 📂 **Pinned Metadata on IPFS (Pinata):** [`/nft-meta-data`](./nft-meta-data)
 
@@ -48,7 +49,7 @@ Users can mint NFTs, list them for sale, and purchase from others in a **trustle
 - **👤 User Gallery:** Personalized dashboard where users can view, manage, and list their NFTs.
 - **🔑 Admin Controls:** Owner-only access to toggle mint state, manage sales, and withdraw funds.
 - **✅ Fully Tested:** Smart contracts tested using **Hardhat test suite** (`MyNFT.test.js`, `Marketplace.js`).
-- **🌍 Deployed on Holesky Testnet:** Verified contracts on [Holesky Etherscan](https://holesky.etherscan.io/address/0x1da9C613Db3383785bCd5bf22df46b55219dA36D).
+- **🌍 Deployed on Sepolia Testnet:** Verified contracts on [Sepolia Etherscan](https://sepolia.etherscan.io/address/0xccDdD4aE659295fD4A86340985ed3dd56eD2fe8C).
 
 ---
 
@@ -56,7 +57,7 @@ Users can mint NFTs, list them for sale, and purchase from others in a **trustle
 
 - **Frontend:** React (Vite), Ethers.js, Zustand, React Router, Tailwind CSS, React Toastify
 - **Smart Contracts:** Solidity, OpenZeppelin, Hardhat (with Ignition for deployment)
-- **Web3 & Storage:** Ethereum (Holesky), MetaMask, **IPFS (Pinata)**
+- **Web3 & Storage:** Ethereum , MetaMask, **IPFS (Pinata)**
 - **Testing:** Hardhat Chai + Mocha test framework
 
 ---
@@ -112,14 +113,14 @@ nft-marketplace/
 - Node.js (>=16.x)
 - npm
 - **MetaMask or Web3 wallet** (must be installed & connected)
-- **Holesky ETH** testnet tokens (required to interact with the live demo)
+- **Sepolia ETH** testnet tokens (required to interact with the live demo)
 - Pinata account for IPFS
 
 👉 To use the **live deployed dApp**, you must:
 
 1. Connect your Web3 wallet (MetaMask).
-2. Switch network to **Ethereum Holesky Testnet**.
-3. Have a small balance of **Holesky ETH** (free from testnet faucets).
+2. Switch network to **Ethereum sepolia Testnet**.
+3. Have a small balance of **Sepolia ETH** (free from testnet faucets).
 
 ### ⚙️ Installation for Local Development
 
@@ -146,10 +147,10 @@ Run tests to ensure everything works:
 npx hardhat test
 ```
 
-Deploy contracts to Holesky (or local Hardhat node):
+Deploy contracts to Sepolia (or local Hardhat node):
 
 ```bash
-npx hardhat ignition deploy ./ignition/modules/ --network holesky
+npx hardhat ignition deploy ./ignition/modules/ --network sepolia
 ```
 
 ---
@@ -179,7 +180,7 @@ Visit [http://localhost:5173](http://localhost:5173) in your browser.
 ```json
 {
   "name": "NFT #1",
-  "description": "Exclusive collectible on Holesky Testnet",
+  "description": "Exclusive collectible on Sepolia Testnet",
   "image": "ipfs://QmYourImageCID",
   "attributes": [
     { "trait_type": "Background", "value": "Blue" },
@@ -192,15 +193,15 @@ Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## 🔧 Deployment Notes
 
-- Contracts deployed with **Hardhat Ignition** to Holesky.
+- Contracts deployed with **Hardhat Ignition** to Sepolia.
 - Update `src/contracts/config.jsx` with deployed contract addresses + ABIs.
-- Marketplace + NFT contracts are **verified on Holesky Etherscan**.
+- Marketplace + NFT contracts are **verified on Sepolia Etherscan**.
 
 ---
 
 ## 🔍 SEO Keywords
 
-NFT Marketplace · Web3 dApp · ERC-721 · Solidity · Hardhat · IPFS Pinata · Ethereum Holesky Testnet · NFT Minting · NFT Trading · Decentralized Marketplace
+NFT Marketplace · Web3 dApp · ERC-721 · Solidity · Hardhat · IPFS Pinata · Ethereum Sepolia Testnet · NFT Minting · NFT Trading · Decentralized Marketplace
 
 ---
 
